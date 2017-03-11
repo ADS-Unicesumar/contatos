@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Contacts</h1>
+
+<table class="bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td>
+        <div class="gravatar"
+             style="background:transparent
+             url(<%= gravatar_image_url(contact.email.gsub('spam', 'mdeering'), size: 30) %>)
+             0px 0px no-repeat; width:30px; height:30px;">
+        </div>
+      </td>
+        <td><%= contact.nome %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.telefone %></td>
+        <td><%= link_to 'Show', contact %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Contact', new_contact_path %>
